@@ -1,24 +1,32 @@
 import Airtable from 'airtable';
-import { Transactions } from './types';
+import { Transactions } from '../types';
 
-export const useAirtable = (
-  apiKey: string | undefined,
-  baseId: string | undefined,
-  tableName: string,
-  view: string = 'Grid view',
-  maxRecords: number = 10
+export const useTransactions = (
+  maxRecords: number,
+  fields?: string[],
+  filterByFormula?: string,
+  view: string = 'Grid view'
 ): Promise<Transactions> => {
+  const apiKey = process.env.REACT_APP_AIRTABLE_API_KEY
+  const baseId = process.env.REACT_APP_AIRTABLE_DATABASE
+  const tableName = 'Transactions'
+
   if (
     !apiKey ||
     !baseId ||
-    !tableName ||
     apiKey === '' ||
-    baseId === '' ||
-    tableName === ''
+    baseId === ''
   ) {
     return new Promise((resolve, reject) =>
       resolve(returnError('missing parameters'))
     );
+  }
+
+  const selectOpts = {
+    maxRecords,
+    view,
+    ...(fields) && {fields},
+    ...(filterByFormula) && {filterByFormula}
   }
 
   const output: any[] = [];
@@ -26,7 +34,7 @@ export const useAirtable = (
   const getData: Promise<Transactions> = new Promise(
     (resolve, reject) =>
       base(tableName)
-        .select({ maxRecords, view })
+        .select(selectOpts)
         .eachPage(
           function page(records, fetchNextPage) {
             records.map((record) => output.push(record.fields));

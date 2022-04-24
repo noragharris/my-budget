@@ -1,7 +1,16 @@
-import { TransactionView } from './transactions';
+import { Provider } from 'react-redux';
+import { store } from './state';
+import { TransactionView } from './components';
 
 const App = () => {
-  return <TransactionView />;
+  return (
+    <Provider store={store}>
+      <div>
+        <h1>My Budget</h1>
+        <TransactionView />
+      </div>
+    </Provider>
+  );
 };
 
 export default App;

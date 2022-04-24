@@ -1,3 +1,5 @@
+import Airtable from 'airtable';
+import { Transaction } from '../../types';
 import { ActionType } from '../action-types';
 
 interface GetTransactionsAction {
@@ -6,7 +8,7 @@ interface GetTransactionsAction {
 
 interface GetTransactionsActionSuccess {
   type: ActionType.GET_TRANSACTIONS_SUCCESS;
-  payload: string[]; // TODO: have this return full transaction data
+  payload: Airtable.Record<Transaction>[];
 }
 
 interface GetTransactionsActionError {

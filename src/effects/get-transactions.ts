@@ -15,7 +15,7 @@ export const getTransactions = (
     const tableName = 'Transactions';
 
     const dispatchError = (error: string) => {
-      return dispatch({
+      dispatch({
         type: ActionType.GET_TRANSACTIONS_ERROR,
         payload: error,
       });
@@ -32,9 +32,7 @@ export const getTransactions = (
         .select({ maxRecords, view })
         .eachPage(
           function page(records, fetchNextPage) {
-            records.map((record) =>
-              output.push(record.fields.transactionDescription),
-            );
+            records.map((record) => output.push(record));
             fetchNextPage();
           },
           function done(err) {

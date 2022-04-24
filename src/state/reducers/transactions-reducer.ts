@@ -1,10 +1,12 @@
+import Airtable from 'airtable';
+import { Transaction } from '../../types';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
 interface TransactionsState {
   loading: boolean;
   error: string | null;
-  data: string[]; // TODO: have this return full transaction data
+  data: Airtable.Record<Transaction>[];
 }
 
 const initialState = {

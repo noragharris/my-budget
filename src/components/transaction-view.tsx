@@ -4,7 +4,9 @@ import { useAppSelector } from '../state';
 export const TransactionView: React.FC = () => {
   const { getTransactions } = useActions();
 
-  const {data, loading, error} = useAppSelector((state) => state.transactions);
+  const { data, loading, error } = useAppSelector(
+    (state) => state.transactions,
+  );
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -20,7 +22,7 @@ export const TransactionView: React.FC = () => {
       <ul>
         {!error &&
           !loading &&
-          data.map((data, index) => <li key={index}>{data}</li>)}
+          data.map((data, index) => <li key={index}>{data.fields.transactionDescription}</li>)}
       </ul>
     </div>
   );

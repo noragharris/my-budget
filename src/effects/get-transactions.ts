@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
-import { ActionType } from '../action-types';
-import { Action } from '../actions';
+import { ActionType } from '../state/action-types';
+import { Action } from '../state/actions';
 import Airtable from 'airtable';
 
 export const getTransactions = (

@@ -22,7 +22,9 @@ export const TransactionView: React.FC = () => {
       <ul>
         {!error &&
           !loading &&
-          data.map((data, index) => <li key={index}>{data.fields.transactionDescription}</li>)}
+          data.map((data, index) => (
+            <li key={index}>{data.fields.transactionDescription}</li>
+          ))}
       </ul>
     </div>
   );

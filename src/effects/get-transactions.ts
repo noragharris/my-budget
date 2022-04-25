@@ -7,12 +7,12 @@ type GetTransactionsQueryParams = {
   maxRecords?: number;
   view?: string;
   returnFields?: string[];
-  // filterByCategory?: string;
+  filterByCategory?: string;
 };
 
-// const queryByCategory = (searchTerm: string): string => {
-//   return `{category}, ${searchTerm}`;
-// };
+const queryByCategory = (searchTerm: string): string => {
+  return `category = "${searchTerm}"`;
+};
 
 export const getTransactions = (request?: GetTransactionsQueryParams) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -34,15 +34,16 @@ export const getTransactions = (request?: GetTransactionsQueryParams) => {
         return dispatchError('Missing Parameters');
       }
 
-      const { maxRecords, view, returnFields } = request || {};
+      const { maxRecords, view, returnFields, filterByCategory } =
+        request || {};
 
       const selectOpts = {
         ...(maxRecords ? { maxRecords: maxRecords } : { maxRecords: 10 }),
         ...(view ? { view: view } : { view: 'Grid view' }),
         ...(returnFields ? { fields: returnFields } : null),
-        // ...(filterByCategory
-        //   ? { filterByFormula: queryByCategory(filterByCategory) }
-        //   : null),
+        ...(filterByCategory
+          ? { filterByFormula: queryByCategory(filterByCategory) }
+          : null),
       };
 
       const output: any[] = [];

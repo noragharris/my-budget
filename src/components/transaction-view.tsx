@@ -10,7 +10,7 @@ export const TransactionView: React.FC = () => {
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    getTransactions();
+    getTransactions({filterByCategory: 'Shopping'});
   };
 
   return (

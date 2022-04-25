@@ -3,7 +3,7 @@ import { useActions } from '../hooks';
 import { useAppSelector } from '../state';
 
 export const TransactionView: React.FC = () => {
-  const [term, setTerm] = useState<string | undefined>(undefined);
+  const [term, setTerm] = useState<string>('');
   const { getTransactions } = useActions();
 
   const { data, loading, error } = useAppSelector(

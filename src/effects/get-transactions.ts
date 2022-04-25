@@ -52,7 +52,7 @@ export const getTransactions = (request?: GetTransactionsQueryParams) => {
         .select(selectOpts)
         .eachPage(
           function page(records, fetchNextPage) {
-            records.map((record) => output.push(record));
+            records.map((record) => output.push(record.fields));
             fetchNextPage();
           },
           function done(err) {

@@ -1,4 +1,3 @@
-import Airtable from 'airtable';
 import { Transaction } from '../../types';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
@@ -6,7 +5,7 @@ import { Action } from '../actions';
 interface TransactionsState {
   loading: boolean;
   error: string | null;
-  data: Airtable.Record<Transaction>[];
+  data: Transaction[];
 }
 
 const initialState = {

@@ -1,5 +1,11 @@
+export type AirtableRecord<T> = {
+  id: string;
+  createdTime: string;
+  fields: T;
+};
+
 export type Transaction = {
-  id: number | string;
+  id: string;
   accountNumber: string;
   transactionDate: string;
   postedDate?: string;
@@ -12,3 +18,5 @@ export type Transaction = {
   category?: string;
   notes?: string;
 };
+
+export type Transactions = AirtableRecord<Transaction>[];

@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { ActionType } from '../state/action-types';
 import { Action } from '../state/actions';
 import Airtable from 'airtable';
+import { Transactions } from '../types';
 
 type GetTransactionsQueryParams = {
   maxRecords?: number;
@@ -46,13 +47,13 @@ export const getTransactions = (request?: GetTransactionsQueryParams) => {
           : null),
       };
 
-      const output: any[] = [];
+      const output: Transactions = [];
       const base = new Airtable({ apiKey }).base(baseId);
       const response = await base(tableName)
         .select(selectOpts)
         .eachPage(
           function page(records, fetchNextPage) {
-            records.map((record) => output.push(record.fields));
+            records.map((record) => output.push(record._rawJson));
             fetchNextPage();
           },
           function done(err) {

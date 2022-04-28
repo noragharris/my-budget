@@ -1,4 +1,4 @@
-import { Transaction } from '../../types';
+import { Transactions } from '../../types';
 import { ActionType } from '../action-types';
 
 interface GetTransactionsAction {
@@ -7,7 +7,7 @@ interface GetTransactionsAction {
 
 interface GetTransactionsActionSuccess {
   type: ActionType.GET_TRANSACTIONS_SUCCESS;
-  payload: Transaction[];
+  payload: Transactions;
 }
 
 interface GetTransactionsActionError {

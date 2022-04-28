@@ -1,11 +1,11 @@
-import { Transaction } from '../../types';
+import { Transactions } from '../../types';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
 interface TransactionsState {
   loading: boolean;
   error: string | null;
-  data: Transaction[];
+  data: Transactions;
 }
 
 const initialState = {
